@@ -23,7 +23,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-
+import androidx.compose.ui.text.capitalize
 
 
 import androidx.compose.ui.tooling.preview.Preview
@@ -73,7 +73,7 @@ class MainActivity : ComponentActivity() {
             if(city!!.isEmpty()){
                 Toast.makeText(this,"Please enter city name",Toast.LENGTH_LONG).show()
             }else{
-                binding.cityName.text=city
+                binding.cityName.text= city.toString().replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
                 getWeatherInfo(city.toString())
             }
         }
@@ -125,7 +125,7 @@ class MainActivity : ComponentActivity() {
                         val list:List<Address>? =
                             geocoder.getFromLocation(location.latitude, location.longitude, 1)
                         cityName= "${list!![0].locality}"
-                        binding.cityName.text = cityName
+                        binding.cityName.text = cityName.capitalize()
                         getWeatherInfo(cityName)
 
                     }
@@ -164,7 +164,6 @@ class MainActivity : ComponentActivity() {
                         .load("https://plus.unsplash.com/premium_photo-1678177202541-b2fd87fe8c8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1304&q=80")
                         .into(binding.bg)
                 }
-                binding.cityName.text = cityName
                 val condition= response.getJSONObject("current").getJSONObject("condition").getString("text")
                 binding.weatherCondition.text=condition
                 val icon=response.getJSONObject("current").getJSONObject("condition").getString("icon")
