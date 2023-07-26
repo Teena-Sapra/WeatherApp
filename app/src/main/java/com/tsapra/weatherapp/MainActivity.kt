@@ -30,6 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.constraintlayout.motion.widget.Debug.getLocation
 import androidx.core.app.ActivityCompat
 import com.android.volley.Request
+import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -101,6 +102,7 @@ class MainActivity : ComponentActivity() {
        // cityName=getCityName( location!!.longitude, location.latitude)
        // binding.cityName.text=cityName
         //getWeatherInfo(cityName)
+        binding.weatherRV.adapter=weatherAdapter
         getLocation()
 
 
@@ -114,7 +116,6 @@ class MainActivity : ComponentActivity() {
                 getWeatherInfo(city.toString())
             }
         }
-        binding.weatherRV.adapter=weatherAdapter
 
     }
     /*private fun getCityName(longitude:Double,latitude:Double):String{
@@ -188,6 +189,7 @@ class MainActivity : ComponentActivity() {
                 Toast.makeText(this, "Please turn on location", Toast.LENGTH_LONG).show()
                 val intent= Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
                 startActivity(intent)
+                getLocation()
             }
         }else{
             requestPermissions()
@@ -212,10 +214,10 @@ class MainActivity : ComponentActivity() {
             applicationContext.packageName,
             PackageManager.GET_META_DATA
         )
-        val apiKey=applicationInfo.metaData["KeyValue"].toString()
+        val apiKey="ead821a2bc8f46e2822130209230607"
         val url= "http://api.weatherapi.com/v1/forecast.json?key=$apiKey&q=$cityName&days=1&aqi=yes&alerts=yes"
-        val jsonObjectRequest= JsonObjectRequest(Request.Method.GET,url, null,{
-            response->{
+        val jsonObjectRequest= JsonObjectRequest(Request.Method.GET,url, null, Response.Listener{
+            response->
             weatherModel.clear()
             try{
                 val temperature= response.getJSONObject("current").getString("temp_c")
@@ -223,13 +225,14 @@ class MainActivity : ComponentActivity() {
                 val isDay= response.getJSONObject("current").getInt("is_day")
                 if(isDay==0){
                     Picasso.get()
-                        .load("https://plus.unsplash.com/premium_photo-1674586355425-cdecf76f194f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8c3VufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60")
+                        .load("https://images.unsplash.com/photo-1572986566502-5399b7025160?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fG1vb24lMjBzdGFyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60")
                         .into(binding.bg)
                 }else{
                     Picasso.get()
-                        .load("https://images.unsplash.com/photo-1572986566502-5399b7025160?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fG1vb24lMjBzdGFyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60")
+                        .load("https://plus.unsplash.com/premium_photo-1674586355425-cdecf76f194f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8c3VufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60")
                         .into(binding.bg)
                 }
+                binding.cityName.text = cityName
                 val condition= response.getJSONObject("current").getJSONObject("condition").getString("text")
                 binding.weatherCondition.text=condition
                 val icon=response.getJSONObject("current").getJSONObject("condition").getString("icon")
@@ -260,7 +263,7 @@ class MainActivity : ComponentActivity() {
 
             }catch(e: JSONException){
                 e.printStackTrace()
-            }
+
 
         }
         }){

@@ -8,20 +8,6 @@
     android:background="@color/teal_700">
 
 
-    <TextView
-        android:id="@+id/cityName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:gravity="center"
-        android:text="CityName"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bg" />
-
     <ImageView
         android:id="@+id/bg"
         android:layout_width="0dp"
@@ -38,8 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:layout_constraintLeft_toLeftOf="@id/cityName"
-        app:layout_constraintRight_toRightOf="@id/cityName"
+        app:layout_constraintEnd_toEndOf="@id/cityName"
+        app:layout_constraintStart_toStartOf="@id/cityName"
         app:layout_constraintTop_toBottomOf="@id/cityName">
 
 
@@ -50,7 +36,6 @@
             android:layout_margin="5dp"
             android:layout_weight="4.5"
             android:background="#00000000"
-            android:hint="Enter city name"
             android:padding="5dp"
             android:textColorHint="@color/white"
             app:boxStrokeColor="@color/white"
@@ -60,6 +45,7 @@
                 android:id="@+id/cityInputEdit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:hint="Enter city name"
                 android:importantForAutofill="no"
                 android:singleLine="true"
                 android:textColor="@color/white"
@@ -67,14 +53,15 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <ImageView
+        <ImageButton
             android:id="@+id/search_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginRight="10dp"
-            android:layout_weight="0.5"
-            tools:srcCompat="@drawable/baseline_search_24" />
+            android:background="#00000000"
+            android:contentDescription="search"
+            android:src="@drawable/baseline_search_24" />
 
     </LinearLayout>
 
@@ -178,7 +165,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="80dp"
         android:gravity="center"
         android:text="Today's Weather Forecast"
         android:textColor="@color/white"
@@ -202,6 +189,21 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
+    <TextView
+        android:id="@+id/cityName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:gravity="center"
+        android:text="CityName"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bg" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

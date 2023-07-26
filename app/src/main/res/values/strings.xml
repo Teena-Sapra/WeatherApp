@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">WeatherApp</string>
     <string name="temp_celsius">%s°C</string>
-    <string name="wind_speed">%sKm/h</string>
+    <string name="wind_speed">Wind Speed: %sKm/h</string>
     <string name="humidity">Humidity: %s%%</string>
     <string name="clouds">Clouds: %s%%</string>
     <string name="real_feel">Feels like: %s°C</string>

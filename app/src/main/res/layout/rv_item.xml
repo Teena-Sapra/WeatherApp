@@ -1,54 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="150dp"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_margin="6dp"
-    app:cardElevation="8dp"
-    app:cardCornerRadius="10dp"
     android:background="@drawable/rounded_corner"
-    android:padding="5dp">
+    android:padding="5dp"
+    app:cardBackgroundColor="#00000000"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="8dp">
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:padding="5dp">
 
         <TextView
+            android:id="@+id/rv_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/rv_time"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="time"
+            android:textAlignment="center"
+            android:textColor="@color/white"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:gravity="center"
-            android:padding="4dp"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:text="time"></TextView>
+            app:layout_constraintTop_toTopOf="parent"></TextView>
+
         <TextView
+            android:id="@+id/rv_temperature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/rv_temperature"
-            app:layout_constraintTop_toBottomOf="@id/rv_time"
-            app:layout_constraintLeft_toLeftOf="@id/rv_time"
-            app:layout_constraintRight_toRightOf="@id/rv_time"
             android:gravity="center"
             android:padding="4dp"
+            android:text="31"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:text="31"
-            android:textSize="20sp"></TextView>
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="@id/rv_time"
+            app:layout_constraintRight_toRightOf="@id/rv_time"
+            app:layout_constraintTop_toBottomOf="@id/rv_time"></TextView>
+
         <ImageView
+            android:id="@+id/rv_condition_icon"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:id="@+id/rv_condition_icon"
-            app:layout_constraintTop_toBottomOf="@id/rv_temperature"
-            app:layout_constraintLeft_toLeftOf="@id/rv_temperature"
-            app:layout_constraintRight_toRightOf="@id/rv_temperature"
             android:layout_margin="5dp"
             android:padding="4dp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher"></ImageView>
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintLeft_toLeftOf="@id/rv_temperature"
+            app:layout_constraintRight_toRightOf="@id/rv_temperature"
+            app:layout_constraintTop_toBottomOf="@id/rv_temperature"></ImageView>
 
         <TextView
             android:id="@+id/rv_wind_speed"
