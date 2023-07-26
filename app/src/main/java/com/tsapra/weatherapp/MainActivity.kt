@@ -161,7 +161,7 @@ class MainActivity : ComponentActivity() {
                         .into(binding.bg)
                 }else{
                     Picasso.get()
-                        .load("https://plus.unsplash.com/premium_photo-1674586355425-cdecf76f194f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8c3VufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60")
+                        .load("https://plus.unsplash.com/premium_photo-1678177202541-b2fd87fe8c8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1304&q=80")
                         .into(binding.bg)
                 }
                 binding.cityName.text = cityName
