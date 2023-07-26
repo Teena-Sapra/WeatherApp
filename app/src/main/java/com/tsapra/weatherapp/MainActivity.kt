@@ -62,46 +62,7 @@ class MainActivity : ComponentActivity() {
         weatherModel= arrayListOf()
         weatherAdapter=WeatherAdapter(this,weatherModel)
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        //locationManager=getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        /*if(ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-        )!= PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-        ) != PackageManager.PERMISSION_GRANTED
-        ){
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                ),
-                PERMISSION_CODE
-            )
-        }*/
 
-
-        //val location=locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
-        /*fusedLocationClient.lastLocation
-            .addOnSuccessListener { location : Location? ->
-                cityName=getCityName( location!!.longitude, location.latitude)
-                binding.cityName.text=cityName
-                getWeatherInfo(cityName)
-                // Got last known location. In some rare situations this can be null.
-            }*/
-        /*fusedLocationClient.lastLocation
-            .addOnSuccessListener { location:Location?->
-                    cityName=getCityName( location!!.longitude, location.latitude)
-                    Log.i("userlocation","${cityName}")
-                    binding.cityName.text=cityName
-                    getWeatherInfo(cityName)
-
-
-            }*/
-       // cityName=getCityName( location!!.longitude, location.latitude)
-       // binding.cityName.text=cityName
-        //getWeatherInfo(cityName)
         binding.weatherRV.adapter=weatherAdapter
         getLocation()
 
@@ -118,22 +79,6 @@ class MainActivity : ComponentActivity() {
         }
 
     }
-    /*private fun getCityName(longitude:Double,latitude:Double):String{
-        var cityName="not found"
-        val geocoder= Geocoder(baseContext, Locale.getDefault())
-        try{
-            val addresses:List<Address> = geocoder.getFromLocation(latitude,longitude,10) as List<Address>
-            for(address in addresses){
-                val city=address.locality
-                if(city!=null && city.isNotBlank()){
-                    cityName=city
-                }
-            }
-        }catch(e:IOException){
-            e.printStackTrace()
-        }
-        return cityName
-    }*/
 
     private fun isLocationEnabled():Boolean{
         val locationManager:LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -195,19 +140,6 @@ class MainActivity : ComponentActivity() {
             requestPermissions()
         }
     }
-    /*
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if(requestCode==PERMISSION_CODE){
-            if(grantResults.isEmpty() && grantResults[0]!=PackageManager.PERMISSION_GRANTED){
-                Toast.makeText(this,"Please provide required permissions",Toast.LENGTH_SHORT).show()
-            }
-        }
-    }*/
 
     private fun getWeatherInfo(cityName:String){
         val applicationInfo=applicationContext.packageManager.getApplicationInfo(
